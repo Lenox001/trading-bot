@@ -1,0 +1,64 @@
+# ===== GENERAL =====
+mode: "paper"
+assets:
+  - "mt5"
+
+# ===== MT5 CONNECTION =====
+mt5:
+  login: 12345678
+  password: "your_password"
+  server: "ICMarkets-Demo"
+  path: ""
+
+# ===== TRADING PARAMETERS =====
+symbols:
+  forex: ["EURUSD", "GBPUSD", "USDJPY"]
+  crypto: []
+  stocks: []
+
+timeframes:
+  bias: "M15"
+  entry: "M5"
+  crypto: "5m"
+
+# ===== RISK MANAGEMENT =====
+risk_percent: 1.0               # 1% risk per trade
+max_daily_loss_percent: 5.0     # stops trading if daily loss >= 5%
+max_open_trades: 1
+min_balance: 30                 # stops if equity falls below $30
+max_spread_pips: 2.5            # skip trade if spread > 2.5 pips
+max_slippage_pips: 1.0          # max allowed slippage
+hard_sl_tp: true                # always set SL and TP at broker
+cooldown_minutes: 5             # wait 5 min after SL/TP before new trade
+compound_mode: false            # increase lot size with balance growth
+
+# ===== STRATEGY (SMC) =====
+smc:
+  ob_min_body_pips: 8             # minimum body size of the order block candle (in pips)
+  ob_max_wick_pct: 30             # maximum upper/lower wick as % of the candle range
+  ob_retracement_pct: 50          # entry after price retraces 50% into the OB zone
+  breaker_block: true             # allow trading on breaker blocks (mitigation + retest)
+  entry_trigger_displacement_pips: 3   # price must move 3 pips in the entry direction
+  min_rr: 1.5                     # minimum risk:reward ratio
+  max_sl_pips: 15                 # hard cap on stop loss (pips)
+  take_profit_pips: 10            # fixed take profit (pips), can be overridden by RR
+  min_atr_pips: 5                # minimum ATR(14) on entry TF, skip if below
+  use_mtf: true                   # must align with bias TF structure
+
+# ===== SESSION & NEWS =====
+sessions:
+  london: false                    # 07:00–16:00 UTC
+  new_york: false                  # 12:00–20:00 UTC
+  asian: false
+  news_filter: false
+  news_quiet_minutes: 30          # pause 30 min before/after high‑impact news
+
+# ===== LOGGING =====
+logs:
+  level: "DEBUG"
+  file: "bot.log"
+
+telegram:
+  enabled: false
+  bot_token: "YOUR_TOKEN"
+  chat_id: "YOUR_CHAT_ID"

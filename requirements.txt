@@ -1,0 +1,9 @@
+MetaTrader5==5.0.5735
+ccxt==4.3.34
+pandas>=2.2.3
+numpy==1.26.4
+pyyaml==6.0.1
+requests==2.31.0
+python-telegram-bot==21.1.1
+schedule==1.2.1
+beautifulsoup4==4.12.3
